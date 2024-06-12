@@ -88,7 +88,20 @@ target_link_libraries(${PROJECT_NAME} EnTT::EnTT)
 # Test Framework
 
 # catch2
-find_package(Catch2 3 REQUIRED)
+find_package(Catch2 3)
+if (NOT Catch2_FOUND)
+    if (NOT DEFINED Catch2_VERSION)
+        set(Catch2_VERSION v3.6.0)
+    endif()
+    include(FetchContent)
+    FetchContent_Declare(
+            Catch2
+            GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+            GIT_TAG ${Catch2_VERSION}
+    )
+    FetchContent_MakeAvailable(Catch2)
+endif()
+
 # These tests can use the Catch2-provided main
 add_executable(tests test.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
