@@ -12,10 +12,15 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 # cpp_engine
 set(PROJECT_NAME_LIB "_${PROJECT_NAME}")
-add_library(${PROJECT_NAME_LIB} STATIC cppengine.cpp
+add_library(${PROJECT_NAME_LIB} STATIC
+        src/cppengine.cpp
+        src/cppengine.h
         src/Application.cpp
         src/Application.h
+        src/System.cpp
+        src/System.h
 )
+
 include_directories(${PROJECT_NAME_LIB} "src/")
 add_dependencies(${PROJECT_NAME} ${PROJECT_NAME_LIB})
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME_LIB})
