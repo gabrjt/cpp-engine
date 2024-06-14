@@ -40,7 +40,6 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 #set(raylib_VERBOSE 1)
-#target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME_LIB} raylib)
 
 # Web Configurations
@@ -71,7 +70,6 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-#target_link_libraries(${PROJECT_NAME} raylib_cpp)
 target_link_libraries(${PROJECT_NAME_LIB} raylib_cpp)
 
 # entt
@@ -89,7 +87,7 @@ if (NOT EnTT_FOUND)
     FetchContent_MakeAvailable(EnTT)
 endif()
 
-target_link_libraries(${PROJECT_NAME} EnTT::EnTT)
+target_link_libraries(${PROJECT_NAME_LIB} EnTT::EnTT)
 
 # Test Framework
 
