@@ -10,9 +10,9 @@ int main() {
     while (!window.ShouldClose()) {
         BeginDrawing();
 
-        window.ClearBackground(RAYWHITE);
+        window.ClearBackground(BLACK);
 
-        DrawText(text, (window.GetWidth() / 2) - (length * 60 / 3), window.GetHeight() / 2, 60, LIGHTGRAY);
+        DrawText(text, (window.GetWidth() / 2) - (length * 60 / 3), window.GetHeight() / 2, 60, RAYWHITE);
 
         EndDrawing();
     }
