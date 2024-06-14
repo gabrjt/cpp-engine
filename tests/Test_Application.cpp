@@ -2,7 +2,7 @@
 // Created by Gabriel on 12/06/2024.
 //
 #include <catch2/catch_test_macros.hpp>
-#include "Application.h"
+#include "cppengine.h"
 
 TEST_CASE("Application is Singleton", "[application-singleton]") {
     Engine::Application *application1 = &Engine::Application::Get();
@@ -15,11 +15,37 @@ TEST_CASE("Application is Singleton", "[application-singleton]") {
     REQUIRE(application1 == application2);
 }
 
-TEST_CASE("Application open Window", "[application-open-window]") {
+TEST_CASE("Application OpenWindow", "[application-open-window]") {
     Engine::Application &application = Engine::Application::Get();
     raylib::Window &window = application.OpenWindow("oie", 640, 480);
 
     REQUIRE(!window.ShouldClose());
+}
+
+TEST_CASE("Application GetWindow return same reference", "[application-get-window-valid-reference]") {
+    Engine::Application &application = Engine::Application::Get();
+    raylib::Window *window1 = &application.OpenWindow("oie", 640, 480);
+    raylib::Window *window2 = &application.GetWindow();
+
+    // Different pointers
+    REQUIRE(&window1 != &window2);
+
+    // Pointing to the same address
+    REQUIRE(window1 == window2);
+}
+
+TEST_CASE("Application GetWindow return nullptr if not open", "[application-get-window-invalid-reference]") {
+    Engine::Application &application = Engine::Application::Get();
+    raylib::Window *window = &application.GetWindow();
+
+    REQUIRE(window == nullptr);
+}
+
+TEST_CASE("Application Window should close if not open", "[application-get-window-invalid-instance]") {
+    Engine::Application &application = Engine::Application::Get();
+    raylib::Window &window = application.GetWindow();
+
+    REQUIRE(window.ShouldClose());
 }
 
 TEST_CASE("Application start with 60 FPS", "[application-start-60-fps]") {

@@ -15,7 +15,7 @@ namespace Engine {
         return application;
     }
 
-    void Application::SetTargetFrameRate(int frameRate) {
+    void Application::SetTargetFrameRate(const int frameRate) {
         SetTargetFPS(m_FrameRate = frameRate);
     }
 
@@ -23,11 +23,14 @@ namespace Engine {
         return m_FrameRate;
     }
 
-    raylib::Window &Application::OpenWindow(const char *title, int width, int height) {
+    raylib::Window &Application::OpenWindow(const char *title, const int width, const int height) {
         static raylib::Window window(width, height, title);
 
         return *(m_Window = &window);
     }
 
+    raylib::Window &Application::GetWindow() const {
+        return *m_Window;
+    }
 
 }

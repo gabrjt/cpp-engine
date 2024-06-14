@@ -25,6 +25,8 @@ namespace Engine {
         int GetTargetFrameRate() const;
 
         raylib::Window &OpenWindow(const char *title, int width, int height);
+
+        raylib::Window &GetWindow() const;
     };
 }
 
