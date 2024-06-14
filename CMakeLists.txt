@@ -12,7 +12,11 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 # cpp_engine
 set(PROJECT_NAME_LIB "_${PROJECT_NAME}")
-add_library(${PROJECT_NAME_LIB} STATIC library.cpp)
+add_library(${PROJECT_NAME_LIB} STATIC cppengine.cpp
+        src/Application.cpp
+        src/Application.h
+)
+include_directories(${PROJECT_NAME_LIB} "src/")
 add_dependencies(${PROJECT_NAME} ${PROJECT_NAME_LIB})
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME_LIB})
 
@@ -36,7 +40,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 #set(raylib_VERBOSE 1)
-target_link_libraries(${PROJECT_NAME} raylib)
+#target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME_LIB} raylib)
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")
@@ -66,7 +71,8 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-target_link_libraries(${PROJECT_NAME} raylib_cpp)
+#target_link_libraries(${PROJECT_NAME} raylib_cpp)
+target_link_libraries(${PROJECT_NAME_LIB} raylib_cpp)
 
 # entt
 find_package(EnTT QUIET)
@@ -103,8 +109,10 @@ if (NOT Catch2_FOUND)
 endif()
 
 # These tests can use the Catch2-provided main
-add_executable(tests test.cpp)
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+add_executable(tests
+        tests/Test_Application.cpp
+)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain ${PROJECT_NAME_LIB})
 
 include(CTest)
 include(Catch)
