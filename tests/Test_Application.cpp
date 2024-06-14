@@ -54,10 +54,8 @@ TEST_CASE("Application start with 60 FPS", "[application-start-60-fps]") {
     REQUIRE(application.GetTargetFrameRate() == 60);
 }
 
-TEST_CASE("Application set target frame rate", "[application-set-target-fps]") {
+TEST_CASE("Application SetTargetFrameRate", "[application-set-target-fps]") {
     Engine::Application &application = Engine::Application::Get();
-
-
     application.SetTargetFrameRate(30);
 
     REQUIRE(application.GetTargetFrameRate() == 30);
