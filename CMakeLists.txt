@@ -41,8 +41,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
         FetchContent_Populate(raylib)
         set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
         add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
-    endif()
-endif()
+    endif ()
+endif ()
 
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME_LIB} raylib)
@@ -51,21 +51,21 @@ target_link_libraries(${PROJECT_NAME_LIB} raylib)
 if (${PLATFORM} STREQUAL "Web")
     # Tell Emscripten to build an example.html file.
     set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-endif()
+endif ()
 
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
 if (APPLE)
     target_link_libraries(${PROJECT_NAME} "-framework IOKit")
     target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
     target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
-endif()
+endif ()
 
 # raylib-cpp
 find_package(raylib_cpp QUIET)
 if (NOT raylib_cpp_FOUND)
     if (NOT DEFINED RAYLIB_CPP_VERSION)
         set(RAYLIB_CPP_VERSION v5.0.1)
-    endif()
+    endif ()
     include(FetchContent)
     FetchContent_Declare(
             raylib_cpp
@@ -73,7 +73,7 @@ if (NOT raylib_cpp_FOUND)
             GIT_TAG ${RAYLIB_CPP_VERSION}
     )
     FetchContent_MakeAvailable(raylib_cpp)
-endif()
+endif ()
 
 target_link_libraries(${PROJECT_NAME_LIB} raylib_cpp)
 
@@ -82,7 +82,7 @@ find_package(EnTT QUIET)
 if (NOT EnTT_FOUND)
     if (NOT DEFINED ENTT_VERSION)
         set(ENTT_VERSION v3.13.2)
-    endif()
+    endif ()
     include(FetchContent)
     FetchContent_Declare(
             EnTT
@@ -90,7 +90,7 @@ if (NOT EnTT_FOUND)
             GIT_TAG ${ENTT_VERSION}
     )
     FetchContent_MakeAvailable(EnTT)
-endif()
+endif ()
 
 target_link_libraries(${PROJECT_NAME_LIB} EnTT::EnTT)
 
@@ -101,7 +101,7 @@ find_package(Catch2 3)
 if (NOT Catch2_FOUND)
     if (NOT DEFINED Catch2_VERSION)
         set(Catch2_VERSION v3.6.0)
-    endif()
+    endif ()
     include(FetchContent)
     FetchContent_Declare(
             Catch2
@@ -109,7 +109,7 @@ if (NOT Catch2_FOUND)
             GIT_TAG ${Catch2_VERSION}
     )
     FetchContent_MakeAvailable(Catch2)
-endif()
+endif ()
 
 # These tests can use the Catch2-provided main
 add_executable(tests
