@@ -5,7 +5,7 @@
 #include "Application.h"
 
 namespace Engine {
-    Application::Application() : m_FrameRate(60), m_Window(nullptr) {
+    Application::Application() : m_FrameRate(60), m_Window(nullptr), m_Simulation(), m_Systems() {
         SetTargetFPS(m_FrameRate);
     }
 
@@ -33,4 +33,7 @@ namespace Engine {
         return *m_Window;
     }
 
+    std::size_t Application::GetSystemsCount() const {
+        return m_Systems.size();
+    }
 }
