@@ -13,7 +13,7 @@ namespace Engine {
     class Application final {
     private:
         int m_FrameRate;
-        raylib::Window *m_Window;
+        std::shared_ptr<raylib::Window> m_Window;
         entt::registry m_Registry;
         std::vector<System> m_Systems;
 
@@ -30,9 +30,9 @@ namespace Engine {
 
         int GetTargetFrameRate() const;
 
-        raylib::Window &OpenWindow(const char *title, int width, int height);
+        std::shared_ptr<raylib::Window> &OpenWindow(const char *title, int width, int height);
 
-        raylib::Window &GetWindow() const;
+        std::shared_ptr<raylib::Window> &GetWindow();
 
         template<std::size_t TSize>
         void RegisterSystems(const std::array<System, TSize> &systems) {

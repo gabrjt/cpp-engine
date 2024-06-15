@@ -17,35 +17,53 @@ TEST_CASE("Application is Singleton", "[application-singleton]") {
 
 TEST_CASE("Application OpenWindow", "[application-open-window]") {
     Engine::Application &application = Engine::Application::Get();
-    raylib::Window &window = application.OpenWindow("oie", 640, 480);
+    std::shared_ptr<raylib::Window> window = application.OpenWindow("oie", 640, 480);
 
-    REQUIRE(!window.ShouldClose());
+    REQUIRE(!window->ShouldClose());
 }
 
 TEST_CASE("Application GetWindow return same reference", "[application-get-window-valid-reference]") {
     Engine::Application &application = Engine::Application::Get();
-    raylib::Window *window1 = &application.OpenWindow("oie", 640, 480);
-    raylib::Window *window2 = &application.GetWindow();
+    std::shared_ptr<raylib::Window> window1 = application.OpenWindow("oie", 640, 480);
+    std::shared_ptr<raylib::Window> window2 = application.GetWindow();
 
     // Different pointers
     REQUIRE(&window1 != &window2);
 
     // Pointing to the same address
     REQUIRE(window1 == window2);
+
+    REQUIRE(window1.use_count() == window2.use_count());
+}
+
+TEST_CASE("Application GetWindow return shared ptr", "[application-get-window-shared-ptr]") {
+    Engine::Application &application = Engine::Application::Get();
+    std::shared_ptr<raylib::Window> window1 = application.OpenWindow("oie", 640, 480);
+
+    REQUIRE(window1.use_count() == 2);
+
+    {
+        std::shared_ptr<raylib::Window> window2 = application.GetWindow();
+
+        REQUIRE(window1.use_count() == 3);
+    }
+
+    REQUIRE(window1.use_count() == 2);
 }
 
 TEST_CASE("Application GetWindow return nullptr if not open", "[application-get-window-invalid-reference]") {
     Engine::Application &application = Engine::Application::Get();
-    raylib::Window *window = &application.GetWindow();
+    std::shared_ptr<raylib::Window> window = application.GetWindow();
 
     REQUIRE(window == nullptr);
+    REQUIRE(window.use_count() == 0);
 }
 
 TEST_CASE("Application Window should close if not open", "[application-get-window-invalid-instance]") {
     Engine::Application &application = Engine::Application::Get();
-    raylib::Window &window = application.GetWindow();
+    std::shared_ptr<raylib::Window> window = application.GetWindow();
 
-    REQUIRE(window.ShouldClose());
+    REQUIRE(window->ShouldClose());
 }
 
 TEST_CASE("Application start with 60 FPS", "[application-start-60-fps]") {

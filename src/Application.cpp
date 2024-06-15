@@ -28,14 +28,18 @@ namespace Engine {
         return m_FrameRate;
     }
 
-    raylib::Window &Application::OpenWindow(const char *title, const int width, const int height) {
+    std::shared_ptr<raylib::Window> &Application::OpenWindow(const char *title, const int width, const int height) {
         static raylib::Window window(width, height, title);
 
-        return *(m_Window = &window);
+        if (!m_Window) {
+            m_Window = std::make_shared<raylib::Window>(window);
+        }
+
+        return m_Window;
     }
 
-    raylib::Window &Application::GetWindow() const {
-        return *m_Window;
+    std::shared_ptr<raylib::Window> &Application::GetWindow() {
+        return m_Window;
     }
 
     std::size_t Application::GetSystemsCount() const {
