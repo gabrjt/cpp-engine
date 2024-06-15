@@ -9,6 +9,11 @@ namespace Engine {
         SetTargetFPS(m_FrameRate);
     }
 
+    Application::~Application() {
+        m_Window = nullptr;
+        m_Systems.clear();
+    }
+
     Application &Application::Get() {
         static Application application;
 

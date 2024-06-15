@@ -20,6 +20,8 @@ namespace Engine {
     public:
         Application();
 
+        ~Application();
+
         Application(Application &) = delete;
 
         static Application &Get();
