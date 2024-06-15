@@ -10,7 +10,7 @@ namespace Engine {
     public:
         virtual ~System() = default;
 
-        virtual void Update(entt::registry &simulation) {}
+        virtual void Update() = 0;
     };
 }
 

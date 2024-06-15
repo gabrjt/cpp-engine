@@ -15,7 +15,7 @@ namespace Engine {
         int m_FrameRate;
         std::shared_ptr<raylib::Window> m_Window;
         entt::registry m_Registry;
-        std::vector<System> m_Systems;
+        std::vector<std::unique_ptr<System>> m_Systems;
 
     public:
         Application();
@@ -35,11 +35,11 @@ namespace Engine {
         std::shared_ptr<raylib::Window> &GetWindow();
 
         template<std::size_t TSize>
-        void RegisterSystems(const std::array<System, TSize> &systems) {
+        void RegisterSystems(std::array<std::unique_ptr<System>, TSize> &systems) {
             m_Systems.reserve(m_Systems.size() + TSize);
 
-            for (const System &system: systems) {
-                m_Systems.emplace_back(system);
+            for (std::unique_ptr<System> &system: systems) {
+                m_Systems.emplace_back(std::move(system));
             }
         }
 

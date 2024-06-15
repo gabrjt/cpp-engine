@@ -47,8 +47,8 @@ namespace Engine {
     }
 
     void Application::UpdateSystems() {
-        for (System &system: m_Systems) {
-            system.Update(m_Registry);
+        for (const std::unique_ptr<System> &system: m_Systems) {
+            system->Update();
         }
     }
 }

@@ -81,7 +81,7 @@ TEST_CASE("Application SetTargetFrameRate", "[application-set-target-fps]") {
 
 TEST_CASE("Application RegisterSystems", "[application-register-systems]") {
     Engine::Application &application = Engine::Application::Get();
-    std::array<Engine::System, 2> systems{};
+    std::array<std::unique_ptr<Engine::System>, 2> systems{};
     application.RegisterSystems(systems);
 
     REQUIRE(application.GetSystemsCount() == 2);
@@ -89,12 +89,12 @@ TEST_CASE("Application RegisterSystems", "[application-register-systems]") {
 
 TEST_CASE("Application RegisterSystems expand capacity", "[application-register-systems-expand-capacity]") {
     Engine::Application &application = Engine::Application::Get();
-    std::array<Engine::System, 2> systems1{};
+    std::array<std::unique_ptr<Engine::System>, 2> systems1{};
     application.RegisterSystems(systems1);
 
     REQUIRE(application.GetSystemsCount() == 2);
 
-    std::array<Engine::System, 3> systems2{};
+    std::array<std::unique_ptr<Engine::System>, 3> systems2{};
     application.RegisterSystems(systems2);
 
     REQUIRE(application.GetSystemsCount() == 5);
