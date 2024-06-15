@@ -41,4 +41,10 @@ namespace Engine {
     std::size_t Application::GetSystemsCount() const {
         return m_Systems.size();
     }
+
+    void Application::UpdateSystems() {
+        for (System &system: m_Systems) {
+            system.Update(m_Registry);
+        }
+    }
 }

@@ -44,6 +44,8 @@ namespace Engine {
         }
 
         std::size_t GetSystemsCount() const;
+
+        void UpdateSystems();
     };
 }
 
