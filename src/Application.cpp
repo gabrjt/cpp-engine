@@ -28,7 +28,7 @@ namespace Engine {
         return m_FrameRate;
     }
 
-    std::shared_ptr<raylib::Window> &Application::OpenWindow(const char *title, const int width, const int height) {
+    std::shared_ptr<raylib::Window> Application::OpenWindow(const char *title, const int width, const int height) {
         static raylib::Window window(width, height, title);
 
         if (!m_Window) {
@@ -38,7 +38,7 @@ namespace Engine {
         return m_Window;
     }
 
-    std::shared_ptr<raylib::Window> &Application::GetWindow() {
+    std::shared_ptr<raylib::Window> Application::GetWindow() {
         return m_Window;
     }
 

@@ -30,9 +30,9 @@ namespace Engine {
 
         int GetTargetFrameRate() const;
 
-        std::shared_ptr<raylib::Window> &OpenWindow(const char *title, int width, int height);
+        std::shared_ptr<raylib::Window> OpenWindow(const char *title, int width, int height);
 
-        std::shared_ptr<raylib::Window> &GetWindow();
+        std::shared_ptr<raylib::Window> GetWindow();
 
         template<std::size_t TSize>
         void RegisterSystems(std::array<std::unique_ptr<System>, TSize> &systems) {
