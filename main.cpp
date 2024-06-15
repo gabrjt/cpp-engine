@@ -1,11 +1,15 @@
 #include <cstring>
 #include "cppengine.h"
 
-class WindowSystem : public Engine::System {
+class WindowSystem final : public Engine::System {
 private:
     std::shared_ptr<raylib::Window> m_Window;
 public:
     WindowSystem() : m_Window(Engine::Application::Get().OpenWindow("CPP ENGINE", 1920, 1080)) {}
+
+    WindowSystem(const char *title, int width, int height) : m_Window(
+            Engine::Application::Get().OpenWindow(title, width, height)) {
+    }
 
     void Update() override {
         static const char *text = "WELCOME TO CPP ENGINE";
@@ -23,7 +27,7 @@ public:
 
 int main() {
     Engine::Application &application = Engine::Application::Get();
-    application.RegisterSystems<WindowSystem>();
+    application.RegisterSystems(WindowSystem());
 
     std::shared_ptr<raylib::Window> window = application.GetWindow();
 
