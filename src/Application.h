@@ -10,7 +10,7 @@
 #include "System.h"
 
 namespace Engine {
-    class Application {
+    class Application final {
     private:
         int m_FrameRate;
         raylib::Window *m_Window;
