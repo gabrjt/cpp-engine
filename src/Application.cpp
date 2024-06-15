@@ -51,4 +51,8 @@ namespace Engine {
             system->Update();
         }
     }
+
+    entt::registry &Application::GetRegistry() {
+        return m_Registry;
+    }
 }

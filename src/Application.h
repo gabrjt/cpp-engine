@@ -45,6 +45,8 @@ namespace Engine {
 
         std::size_t GetSystemsCount() const;
 
+        entt::registry &GetRegistry();
+
         void UpdateSystems();
     };
 }
