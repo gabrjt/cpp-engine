@@ -14,7 +14,7 @@ namespace Engine {
     private:
         int m_FrameRate;
         raylib::Window *m_Window;
-        entt::registry m_Simulation;
+        entt::registry m_Registry;
         std::vector<System> m_Systems;
 
     public:

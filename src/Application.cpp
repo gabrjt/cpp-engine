@@ -5,7 +5,7 @@
 #include "Application.h"
 
 namespace Engine {
-    Application::Application() : m_FrameRate(60), m_Window(nullptr), m_Simulation(), m_Systems() {
+    Application::Application() : m_FrameRate(60), m_Window(nullptr), m_Registry(), m_Systems() {
         SetTargetFPS(m_FrameRate);
     }
 
