@@ -23,9 +23,7 @@ public:
 
 int main() {
     Engine::Application &application = Engine::Application::Get();
-
-    std::array<std::unique_ptr<Engine::System>, 1> systems{std::make_unique<WindowSystem>()};
-    application.RegisterSystems(systems);
+    application.RegisterSystems<WindowSystem>();
 
     std::shared_ptr<raylib::Window> window = application.GetWindow();
 

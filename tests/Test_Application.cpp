@@ -79,10 +79,24 @@ TEST_CASE("Application SetTargetFrameRate", "[application-set-target-fps]") {
     REQUIRE(application.GetTargetFrameRate() == 30);
 }
 
+class FooSystem : public Engine::System {
+public:
+    void Update() override {}
+};
+
+class BarSystem : public Engine::System {
+public:
+    void Update() override {}
+};
+
+class FoobarSystem : public Engine::System {
+public:
+    void Update() override {}
+};
+
 TEST_CASE("Application RegisterSystems", "[application-register-systems]") {
     Engine::Application &application = Engine::Application::Get();
-    std::array<std::unique_ptr<Engine::System>, 2> systems{};
-    application.RegisterSystems(systems);
+    application.RegisterSystems<FooSystem, BarSystem>();
 
     REQUIRE(application.GetSystemsCount() == 2);
 }
@@ -90,12 +104,11 @@ TEST_CASE("Application RegisterSystems", "[application-register-systems]") {
 TEST_CASE("Application RegisterSystems expand capacity", "[application-register-systems-expand-capacity]") {
     Engine::Application &application = Engine::Application::Get();
     std::array<std::unique_ptr<Engine::System>, 2> systems1{};
-    application.RegisterSystems(systems1);
+    application.RegisterSystems<FooSystem, BarSystem>();
 
     REQUIRE(application.GetSystemsCount() == 2);
 
-    std::array<std::unique_ptr<Engine::System>, 3> systems2{};
-    application.RegisterSystems(systems2);
+    application.RegisterSystems<FooSystem, BarSystem, FoobarSystem>();
 
     REQUIRE(application.GetSystemsCount() == 5);
 }
