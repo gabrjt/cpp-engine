@@ -6,7 +6,7 @@
 #define CPP_ENGINE_LOGPLAYERINPUTSYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class LogPlayerInputSystem : public Engine::System {
+    class LogPlayerInputSystem final : public Engine::System {
     public:
         void Update() override;
     };

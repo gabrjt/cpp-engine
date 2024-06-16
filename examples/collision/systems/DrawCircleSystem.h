@@ -6,7 +6,7 @@
 #define CPP_ENGINE_DRAWCIRCLESYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class DrawCircleSystem : public Engine::System {
+    class DrawCircleSystem final : public Engine::System {
     public:
         void Update() override;
     };

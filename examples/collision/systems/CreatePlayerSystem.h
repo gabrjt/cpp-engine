@@ -6,7 +6,7 @@
 #define CPP_ENGINE_CREATEPLAYERSYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class CreatePlayerSystem : public Engine::System {
+    class CreatePlayerSystem final : public Engine::System {
     public:
         CreatePlayerSystem();
 

@@ -6,7 +6,7 @@
 #define CPP_ENGINE_SPAWNCIRCLESYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class SpawnCircleSystem : public Engine::System {
+    class SpawnCircleSystem final : public Engine::System {
     public:
         SpawnCircleSystem();
 

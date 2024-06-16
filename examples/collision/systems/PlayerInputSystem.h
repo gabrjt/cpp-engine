@@ -6,7 +6,7 @@
 #define CPP_ENGINE_PLAYERINPUTSYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class PlayerInputSystem : public Engine::System {
+    class PlayerInputSystem final : public Engine::System {
     public:
         void Update() override;
     };

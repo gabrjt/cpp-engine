@@ -6,7 +6,7 @@
 #define CPP_ENGINE_MOVEMENTINPUTSYSTEM_H
 
 namespace Engine::Examples::Collision {
-    class MovementInputSystem : public Engine::System {
+    class MovementInputSystem final : public Engine::System {
     public:
         void Update() override;
     };
