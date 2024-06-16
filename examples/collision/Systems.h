@@ -10,6 +10,7 @@
 #include "LogPlayerInputSystem.h"
 #include "MovementInputSystem.h"
 #include "MovementSystem.h"
+#include "OutOfBoundsSystem.h"
 #include "PlayerInputSystem.h"
 #include "SpawnCircleSystem.h"
 #include "WindowSystem.h"

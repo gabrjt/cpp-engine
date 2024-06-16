@@ -6,7 +6,8 @@ using namespace Engine::Examples::Collision;
 int main() {
     Engine::Application &application = Engine::Application::Get();
     application.RegisterSystems(WindowSystem(), CreatePlayerSystem(), PlayerInputSystem(), LogPlayerInputSystem(),
-                                MovementInputSystem(), SpawnCircleSystem(), MovementSystem(), DrawCircleSystem());
+                                MovementInputSystem(), SpawnCircleSystem(), MovementSystem(), OutOfBoundsSystem(),
+                                DrawCircleSystem());
 
     std::shared_ptr<raylib::Window> window = application.GetWindow();
 

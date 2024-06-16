@@ -155,6 +155,8 @@ add_executable(${EXAMPLE_COLLISION}
         examples/collision/systems/MovementInputSystem.h
         examples/collision/systems/MovementSystem.cpp
         examples/collision/systems/MovementSystem.h
+        examples/collision/systems/OutOfBoundsSystem.cpp
+        examples/collision/systems/OutOfBoundsSystem.h
         examples/collision/systems/PlayerInputSystem.cpp
         examples/collision/systems/PlayerInputSystem.h
         examples/collision/systems/SpawnCircleSystem.cpp
