@@ -2,6 +2,9 @@
 // Created by Gabriel on 12/06/2024.
 //
 
+#include <raylib-cpp.hpp>
+#include <entt/entt.hpp>
+#include "System.h"
 #include "Application.h"
 
 namespace Engine {

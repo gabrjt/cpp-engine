@@ -5,11 +5,9 @@
 #ifndef CPP_ENGINE_APPLICATION_H
 #define CPP_ENGINE_APPLICATION_H
 
-#include <raylib-cpp.hpp>
-#include <entt/entt.hpp>
-#include "System.h"
-
 namespace Engine {
+    class System;
+
     class Application final {
     private:
         int m_FrameRate;

@@ -127,6 +127,40 @@ catch_discover_tests(tests)
 
 set(EXAMPLE_COLLISION "${PROJECT_NAME}_collision")
 
-add_executable(${EXAMPLE_COLLISION} examples/collision/main.cpp)
+add_executable(${EXAMPLE_COLLISION}
+        examples/collision/main.cpp
+        examples/collision/Components.h
+        examples/collision/Circle.cpp
+        examples/collision/Circle.h
+        examples/collision/Input.cpp
+        examples/collision/Input.h
+        examples/collision/MovementInput.cpp
+        examples/collision/MovementInput.h
+        examples/collision/Player.cpp
+        examples/collision/Player.h
+        examples/collision/PlayerRef.cpp
+        examples/collision/PlayerRef.h
+        examples/collision/Position.cpp
+        examples/collision/Position.h
+        examples/collision/Speed.cpp
+        examples/collision/Speed.h
+        examples/collision/Systems.h
+        examples/collision/CreatePlayerSystem.cpp
+        examples/collision/CreatePlayerSystem.h
+        examples/collision/DrawCircleSystem.cpp
+        examples/collision/DrawCircleSystem.h
+        examples/collision/LogPlayerInputSystem.cpp
+        examples/collision/LogPlayerInputSystem.h
+        examples/collision/MovementInputSystem.cpp
+        examples/collision/MovementInputSystem.h
+        examples/collision/MovementSystem.cpp
+        examples/collision/MovementSystem.h
+        examples/collision/PlayerInputSystem.cpp
+        examples/collision/PlayerInputSystem.h
+        examples/collision/SpawnCircleSystem.cpp
+        examples/collision/SpawnCircleSystem.h
+        examples/collision/WindowSystem.cpp
+        examples/collision/WindowSystem.h
+)
 add_dependencies(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
 target_link_libraries(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
