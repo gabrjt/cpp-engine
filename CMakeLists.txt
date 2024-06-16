@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
-
 # Dependencies
 
 # cpp_engine
@@ -22,8 +20,6 @@ add_library(${PROJECT_NAME_LIB} STATIC
 )
 
 include_directories(${PROJECT_NAME_LIB} "src/")
-add_dependencies(${PROJECT_NAME} ${PROJECT_NAME_LIB})
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME_LIB})
 
 # raylib
 set(RAYLIB_VERSION 5.0)
@@ -124,3 +120,13 @@ catch_discover_tests(tests)
 # These tests need their own main
 #add_executable(custom-main-tests test.cpp test-main.cpp)
 #target_link_libraries(custom-main-tests PRIVATE Catch2::Catch2)
+
+# Examples
+
+# Collision Game
+
+set(EXAMPLE_COLLISION "${PROJECT_NAME}_collision")
+
+add_executable(${EXAMPLE_COLLISION} examples/collision/main.cpp)
+add_dependencies(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
+target_link_libraries(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
