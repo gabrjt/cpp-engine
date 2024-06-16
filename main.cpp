@@ -24,6 +24,33 @@ public:
     }
 };
 
+struct Input {
+    raylib::Vector2 Joystick;
+};
+
+struct Player {
+    static entt::entity Create(entt::registry &registry) {
+        const entt::entity entity = registry.create();
+
+        registry.emplace<Player>(entity);
+        registry.emplace<Input>(entity);
+
+        return entity;
+    }
+};
+
+struct PlayerRef {
+    entt::entity Value;
+};
+
+struct MovementInput {
+    raylib::Vector2 Direction;
+};
+
+struct Speed {
+    float Value;
+};
+
 struct Position {
     raylib::Vector2 Value;
 };
@@ -32,10 +59,21 @@ struct Circle {
     float Radius{};
     raylib::Color Color;
 
-    static entt::entity Create(entt::registry &registry, Circle &&circle, Position &&position) {
+    static entt::entity Create(entt::registry &registry, const Circle &circle, const Position &position) {
         const entt::entity entity = registry.create();
         registry.emplace<Circle>(entity, circle);
         registry.emplace<Position>(entity, position);
+
+        return entity;
+    }
+
+    static entt::entity
+    CreatePlayer(entt::registry &registry, const PlayerRef &playerRef, const Circle &circle, const Position &position,
+                 const Speed &speed) {
+        const entt::entity entity = Create(registry, circle, position);
+        registry.emplace<Speed>(entity, speed);
+        registry.emplace<MovementInput>(entity);
+        registry.emplace<PlayerRef>(entity, playerRef);
 
         return entity;
     }
@@ -62,25 +100,13 @@ public:
     }
 };
 
-struct Input {
-    raylib::Vector2 Joystick;
-};
-
-struct Player {
-    static entt::entity Create(entt::registry &registry) {
-        const entt::entity entity = registry.create();
-
-        registry.emplace<Player>(entity);
-        registry.emplace<Input>(entity);
-
-        return entity;
-    }
-};
 
 class CreatePlayerSystem : public Engine::System {
 public:
     CreatePlayerSystem() {
-        Player::Create(Engine::Application::Get().GetRegistry());
+        entt::registry &registry = Engine::Application::Get().GetRegistry();
+        entt::entity playerEntity = Player::Create(registry);
+        entt::entity circleEntity = Circle::CreatePlayer(registry, {playerEntity}, {25, RED}, {{128, 128}}, {256});
     }
 
     void Update() override {}
@@ -112,6 +138,31 @@ public:
     }
 };
 
+class MovementInputSystem : public Engine::System {
+public:
+    void Update() override {
+        static entt::registry &registry = Engine::Application::Get().GetRegistry();
+        auto view = registry.view<const PlayerRef, MovementInput>();
+
+        view.each([](const PlayerRef &playerRef, MovementInput &movementInput) {
+            movementInput.Direction = registry.get<Input>(playerRef.Value).Joystick.Normalize();
+        });
+    }
+};
+
+class MovementSystem : public Engine::System {
+public:
+    void Update() override {
+        static entt::registry &registry = Engine::Application::Get().GetRegistry();
+        auto view = registry.view<const MovementInput, const Speed, Position>();
+        const float deltaTime = GetFrameTime();
+
+        view.each([&](const MovementInput &movementInput, const Speed &speed, Position &position) {
+            position.Value += movementInput.Direction * speed.Value * deltaTime;
+        });
+    }
+};
+
 class LogPlayerInputSystem : public Engine::System {
 public:
     void Update() override {
@@ -127,7 +178,7 @@ public:
 int main() {
     Engine::Application &application = Engine::Application::Get();
     application.RegisterSystems(WindowSystem(), CreatePlayerSystem(), PlayerInputSystem(), LogPlayerInputSystem(),
-                                SpawnCircleSystem(), DrawCircleSystem());
+                                MovementInputSystem(), SpawnCircleSystem(), MovementSystem(), DrawCircleSystem());
 
     std::shared_ptr<raylib::Window> window = application.GetWindow();
 
