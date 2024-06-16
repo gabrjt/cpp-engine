@@ -130,37 +130,39 @@ set(EXAMPLE_COLLISION "${PROJECT_NAME}_collision")
 add_executable(${EXAMPLE_COLLISION}
         examples/collision/main.cpp
         examples/collision/Components.h
-        examples/collision/Circle.cpp
-        examples/collision/Circle.h
-        examples/collision/Input.cpp
-        examples/collision/Input.h
-        examples/collision/MovementInput.cpp
-        examples/collision/MovementInput.h
-        examples/collision/Player.cpp
-        examples/collision/Player.h
-        examples/collision/PlayerRef.cpp
-        examples/collision/PlayerRef.h
-        examples/collision/Position.cpp
-        examples/collision/Position.h
-        examples/collision/Speed.cpp
-        examples/collision/Speed.h
+        examples/collision/components/Circle.cpp
+        examples/collision/components/Circle.h
+        examples/collision/components/Input.cpp
+        examples/collision/components/Input.h
+        examples/collision/components/MovementInput.cpp
+        examples/collision/components/MovementInput.h
+        examples/collision/components/Player.cpp
+        examples/collision/components/Player.h
+        examples/collision/components/PlayerRef.cpp
+        examples/collision/components/PlayerRef.h
+        examples/collision/components/Position.cpp
+        examples/collision/components/Position.h
+        examples/collision/components/Speed.cpp
+        examples/collision/components/Speed.h
         examples/collision/Systems.h
-        examples/collision/CreatePlayerSystem.cpp
-        examples/collision/CreatePlayerSystem.h
-        examples/collision/DrawCircleSystem.cpp
-        examples/collision/DrawCircleSystem.h
-        examples/collision/LogPlayerInputSystem.cpp
-        examples/collision/LogPlayerInputSystem.h
-        examples/collision/MovementInputSystem.cpp
-        examples/collision/MovementInputSystem.h
-        examples/collision/MovementSystem.cpp
-        examples/collision/MovementSystem.h
-        examples/collision/PlayerInputSystem.cpp
-        examples/collision/PlayerInputSystem.h
-        examples/collision/SpawnCircleSystem.cpp
-        examples/collision/SpawnCircleSystem.h
-        examples/collision/WindowSystem.cpp
-        examples/collision/WindowSystem.h
+        examples/collision/systems/CreatePlayerSystem.cpp
+        examples/collision/systems/CreatePlayerSystem.h
+        examples/collision/systems/DrawCircleSystem.cpp
+        examples/collision/systems/DrawCircleSystem.h
+        examples/collision/systems/LogPlayerInputSystem.cpp
+        examples/collision/systems/LogPlayerInputSystem.h
+        examples/collision/systems/MovementInputSystem.cpp
+        examples/collision/systems/MovementInputSystem.h
+        examples/collision/systems/MovementSystem.cpp
+        examples/collision/systems/MovementSystem.h
+        examples/collision/systems/PlayerInputSystem.cpp
+        examples/collision/systems/PlayerInputSystem.h
+        examples/collision/systems/SpawnCircleSystem.cpp
+        examples/collision/systems/SpawnCircleSystem.h
+        examples/collision/systems/WindowSystem.cpp
+        examples/collision/systems/WindowSystem.h
 )
+
+include_directories(${EXAMPLE_COLLISION} "examples/collision/components" "examples/collision/systems")
 add_dependencies(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
 target_link_libraries(${EXAMPLE_COLLISION} ${PROJECT_NAME_LIB})
