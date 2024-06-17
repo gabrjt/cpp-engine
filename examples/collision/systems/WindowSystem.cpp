@@ -20,6 +20,6 @@ namespace Engine::Examples::Collision {
 
         m_Window->ClearBackground(m_ClearBackgroundColor);
 
-        DrawText(text, (m_Window->GetWidth() / 2) - (length * 60 / 3), m_Window->GetHeight() / 2, 60, RAYWHITE);
+        DrawText(text, (m_Window->GetWidth() / 2) - (length * 60 / 3.2), m_Window->GetHeight() / 2 - 30, 60, RAYWHITE);
     }
 }
