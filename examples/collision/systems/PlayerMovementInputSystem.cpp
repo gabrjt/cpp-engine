@@ -6,10 +6,10 @@
 #include "Input.h"
 #include "MovementInput.h"
 #include "PlayerRef.h"
-#include "MovementInputSystem.h"
+#include "PlayerMovementInputSystem.h"
 
 namespace Engine::Examples::Collision {
-    void MovementInputSystem::Update() {
+    void PlayerMovementInputSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const PlayerRef, MovementInput>();
 
