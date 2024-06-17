@@ -5,10 +5,13 @@ using namespace Engine::Examples::Collision;
 
 int main() {
     Engine::Application &application = Engine::Application::Get();
-    application.RegisterSystems(WindowSystem("Collisions", 1280, 720, BLACK),
-                                CreatePlayerSystem(), PlayerInputSystem(), LogPlayerInputSystem(),
-                                MovementInputSystem(), SpawnCircleSystem(3), MovementSystem(), OutOfBoundsSystem(),
-                                DrawCircleSystem());
+
+    // Constructing systems in the function call does not guarantee order. Maybe it's better to just pass an array after all...
+    WindowSystem windowSystem("Collisions", 1280, 720, BLACK);
+
+    application.RegisterSystems(std::move(windowSystem), CreatePlayerSystem(), PlayerInputSystem(),
+                                LogPlayerInputSystem(), PlayerMovementInputSystem(), AIMovementInputSystem(),
+                                SpawnCircleSystem(16), MovementSystem(), OutOfBoundsSystem(), DrawCircleSystem());
 
     std::shared_ptr<raylib::Window> window = application.GetWindow();
 
