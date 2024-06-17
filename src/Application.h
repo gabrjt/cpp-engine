@@ -49,6 +49,8 @@ namespace Engine {
         entt::registry &GetRegistry();
 
         void UpdateSystems();
+
+        std::vector<std::unique_ptr<System>>& GetSystems();
     };
 }
 

@@ -118,3 +118,17 @@ TEST_CASE("Application RegisterSystems expand capacity", "[application-register-
 
     REQUIRE(application.GetSystemsCount() == 5);
 }
+
+TEST_CASE("Application RegisterSystems add systems in order", "[application-register-systems-in-order]") {
+    Engine::Application &application = Engine::Application::Get();
+
+    application.RegisterSystems(FooSystem(), FoobarSystem(), BarSystem());
+
+    REQUIRE(application.GetSystemsCount() == 3);
+
+    const std::vector<std::unique_ptr<Engine::System>> &systems = application.GetSystems();
+
+    REQUIRE(dynamic_cast<FooSystem *>(systems[0].get()));
+    REQUIRE(dynamic_cast<FoobarSystem *>(systems[1].get()));
+    REQUIRE(dynamic_cast<BarSystem *>(systems[2].get()));
+}

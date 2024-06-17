@@ -59,4 +59,8 @@ namespace Engine {
     entt::registry &Application::GetRegistry() {
         return m_Registry;
     }
+
+    std::vector<std::unique_ptr<System>> &Application::GetSystems() {
+        return m_Systems;
+    }
 }
