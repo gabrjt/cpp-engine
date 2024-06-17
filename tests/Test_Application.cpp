@@ -109,7 +109,7 @@ TEST_CASE("Application RegisterSystems", "[application-register-systems]") {
 
 TEST_CASE("Application RegisterSystems expand capacity", "[application-register-systems-expand-capacity]") {
     Engine::Application &application = Engine::Application::Get();
-    std::array<std::unique_ptr<Engine::System>, 2> systems1{};
+
     application.RegisterSystems(FooSystem(), BarSystem());
 
     REQUIRE(application.GetSystemsCount() == 2);
