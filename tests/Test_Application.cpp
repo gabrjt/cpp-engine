@@ -81,16 +81,22 @@ TEST_CASE("Application SetTargetFrameRate", "[application-set-target-fps]") {
 
 class FooSystem : public Engine::System {
 public:
+    void Initialize() override {}
+
     void Update() override {}
 };
 
 class BarSystem : public Engine::System {
 public:
+    void Initialize() override {}
+
     void Update() override {}
 };
 
 class FoobarSystem : public Engine::System {
 public:
+    void Initialize() override {}
+
     void Update() override {}
 };
 
