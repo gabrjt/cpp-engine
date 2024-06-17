@@ -8,6 +8,8 @@
 namespace Engine::Examples::Collision {
     class OutOfBoundsSystem final : public Engine::System {
     public:
+        void Initialize() override;
+
         void Update() override;
     };
 }

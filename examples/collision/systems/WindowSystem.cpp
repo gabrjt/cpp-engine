@@ -14,6 +14,8 @@ namespace Engine::Examples::Collision {
             Engine::Application::Get().OpenWindow(title, width, height)), m_ClearBackgroundColor(clearBackgroundColor) {
     }
 
+    void WindowSystem::Initialize() {}
+
     void WindowSystem::Update() {
         static const char *text = "WELCOME TO CPP ENGINE";
         static const int length = strlen(text);

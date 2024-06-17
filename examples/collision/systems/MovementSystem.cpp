@@ -9,6 +9,8 @@
 #include "MovementSystem.h"
 
 namespace Engine::Examples::Collision {
+    void MovementSystem::Initialize() {}
+
     void MovementSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const MovementInput, const Speed, Position>();

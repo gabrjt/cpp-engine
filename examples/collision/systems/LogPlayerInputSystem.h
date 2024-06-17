@@ -8,6 +8,8 @@
 namespace Engine::Examples::Collision {
     class LogPlayerInputSystem final : public Engine::System {
     public:
+        void Initialize() override;
+
         void Update() override;
     };
 }

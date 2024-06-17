@@ -10,14 +10,16 @@
 #include "SpawnCircleSystem.h"
 
 namespace Engine::Examples::Collision {
-    SpawnCircleSystem::SpawnCircleSystem(const int count) {
+    SpawnCircleSystem::SpawnCircleSystem(const int count) : m_Count(count) {}
+
+    void SpawnCircleSystem::Initialize() {
         Engine::Application &application = Engine::Application::Get();
         std::shared_ptr<raylib::Window> window = application.GetWindow();
         entt::registry &registry = application.GetRegistry();
         const int width = window->GetWidth();
         const int height = window->GetHeight();
 
-        for (int i = 0; i < count; ++i) {
+        for (int i = 0; i < m_Count; ++i) {
             const Speed speed(GetRandomValue(64, 256));
             const MovementInput movementInput{
                     raylib::Vector2(GetRandomValue(-1, 1), GetRandomValue(-1, 1)).Normalize()};
@@ -28,4 +30,6 @@ namespace Engine::Examples::Collision {
             Circle::CreateAI(registry, circle, position, speed, movementInput);
         }
     }
+
+    void SpawnCircleSystem::Update() {}
 }

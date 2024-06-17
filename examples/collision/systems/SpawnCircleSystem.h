@@ -7,10 +7,15 @@
 
 namespace Engine::Examples::Collision {
     class SpawnCircleSystem final : public Engine::System {
+    private:
+        int m_Count;
+
     public:
         SpawnCircleSystem(int count);
 
-        void Update() override {}
+        void Initialize() override;
+
+        void Update() override;
     };
 }
 

@@ -8,6 +8,8 @@
 #include "PlayerInputSystem.h"
 
 namespace Engine::Examples::Collision {
+    void PlayerInputSystem::Initialize() {}
+
     void PlayerInputSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const Player, Input>();

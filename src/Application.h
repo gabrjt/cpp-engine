@@ -37,7 +37,10 @@ namespace Engine {
             m_Systems.reserve(m_Systems.size() + sizeof...(systems));
 
             ([&] {
-                m_Systems.emplace_back(std::make_unique<TSystems>(systems));
+                std::unique_ptr<TSystems> system = std::make_unique<TSystems>(systems);
+                system->Initialize();
+
+                m_Systems.emplace_back(std::move(system));
             }(), ...);
         }
 

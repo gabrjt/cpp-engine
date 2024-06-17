@@ -8,6 +8,8 @@
 #include "OutOfBoundsSystem.h"
 
 namespace Engine::Examples::Collision {
+    void OutOfBoundsSystem::Initialize() {}
+
     void OutOfBoundsSystem::Update() {
         static Engine::Application &application = Engine::Application::Get();
         static entt::registry &registry = application.GetRegistry();

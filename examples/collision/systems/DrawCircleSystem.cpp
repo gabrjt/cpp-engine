@@ -8,6 +8,8 @@
 #include "DrawCircleSystem.h"
 
 namespace Engine::Examples::Collision {
+    void DrawCircleSystem::Initialize() {}
+
     void DrawCircleSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const Circle, const Position>();

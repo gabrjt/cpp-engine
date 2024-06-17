@@ -8,9 +8,9 @@
 namespace Engine::Examples::Collision {
     class CreatePlayerSystem final : public Engine::System {
     public:
-        CreatePlayerSystem();
+        void Initialize() override;
 
-        void Update() override {}
+        void Update() override;
     };
 }
 

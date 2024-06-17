@@ -9,6 +9,8 @@
 #include "PlayerMovementInputSystem.h"
 
 namespace Engine::Examples::Collision {
+    void PlayerMovementInputSystem::Initialize() {}
+
     void PlayerMovementInputSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const PlayerRef, MovementInput>();

@@ -15,6 +15,8 @@ namespace Engine::Examples::Collision {
 
         WindowSystem(const char *title, int width, int height, raylib::Color clearBackgroundColor);
 
+        void Initialize() override;
+
         void Update() override;
     };
 }

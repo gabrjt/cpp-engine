@@ -9,6 +9,8 @@
 #include "LogPlayerInputSystem.h"
 
 namespace Engine::Examples::Collision {
+    void LogPlayerInputSystem::Initialize() {}
+
     void LogPlayerInputSystem::Update() {
         static entt::registry &registry = Engine::Application::Get().GetRegistry();
         auto view = registry.view<const Player, const Input>();

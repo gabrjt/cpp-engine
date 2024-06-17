@@ -11,7 +11,7 @@
 #include "CreatePlayerSystem.h"
 
 namespace Engine::Examples::Collision {
-    CreatePlayerSystem::CreatePlayerSystem() {
+    void CreatePlayerSystem::Initialize() {
         Engine::Application &application = Engine::Application::Get();
         std::shared_ptr<raylib::Window> window = application.GetWindow();
         entt::registry &registry = application.GetRegistry();
@@ -24,4 +24,6 @@ namespace Engine::Examples::Collision {
         const entt::entity playerEntity = Player::Create(registry);
         const entt::entity circleEntity = Circle::CreatePlayer(registry, {playerEntity}, circle, position, speed);
     }
+
+    void CreatePlayerSystem::Update() {}
 }

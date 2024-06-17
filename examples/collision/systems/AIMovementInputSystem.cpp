@@ -10,6 +10,8 @@
 #include "AIMovementInputSystem.h"
 
 namespace Engine::Examples::Collision {
+    void AIMovementInputSystem::Initialize() {}
+
     void AIMovementInputSystem::Update() {
         static Engine::Application &application = Engine::Application::Get();
         static entt::registry &registry = application.GetRegistry();
