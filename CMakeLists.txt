@@ -145,6 +145,8 @@ add_executable(${EXAMPLE_COLLISION}
         examples/collision/components/Speed.cpp
         examples/collision/components/Speed.h
         examples/collision/Systems.h
+        examples/collision/systems/AIMovementInputSystem.cpp
+        examples/collision/systems/AIMovementInputSystem.h
         examples/collision/systems/CreatePlayerSystem.cpp
         examples/collision/systems/CreatePlayerSystem.h
         examples/collision/systems/DrawCircleSystem.cpp

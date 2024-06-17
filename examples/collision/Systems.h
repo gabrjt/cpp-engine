@@ -5,6 +5,7 @@
 #ifndef CPP_ENGINE_SYSTEMS_H
 #define CPP_ENGINE_SYSTEMS_H
 
+#include "AIMovementInputSystem.h"
 #include "CreatePlayerSystem.h"
 #include "DrawCircleSystem.h"
 #include "LogPlayerInputSystem.h"
