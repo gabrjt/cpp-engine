@@ -8,6 +8,8 @@
 namespace Engine::Examples::Collision {
     struct Speed {
         float Value;
+
+        explicit Speed(float value);
     };
 }
 

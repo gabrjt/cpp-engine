@@ -12,8 +12,15 @@
 
 namespace Engine::Examples::Collision {
     CreatePlayerSystem::CreatePlayerSystem() {
-        entt::registry &registry = Engine::Application::Get().GetRegistry();
-        entt::entity playerEntity = Player::Create(registry);
-        entt::entity circleEntity = Circle::CreatePlayer(registry, {playerEntity}, {25, RED}, {{128, 128}}, {256});
+        Engine::Application &application = Engine::Application::Get();
+        std::shared_ptr<raylib::Window> window = application.GetWindow();
+        entt::registry &registry = application.GetRegistry();
+        const int width = window->GetWidth();
+        const int height = window->GetHeight();
+        const Circle circle(25, BLUE);
+        const Position position{raylib::Vector2(GetRandomValue(0, width), GetRandomValue(0, height))};
+        const Speed speed{256};
+        const entt::entity playerEntity = Player::Create(registry);
+        const entt::entity circleEntity = Circle::CreatePlayer(registry, {playerEntity}, circle, position, speed);
     }
 }

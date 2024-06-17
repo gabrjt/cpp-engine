@@ -8,7 +8,7 @@
 namespace Engine::Examples::Collision {
     class SpawnCircleSystem final : public Engine::System {
     public:
-        SpawnCircleSystem();
+        SpawnCircleSystem(int count);
 
         void Update() override {}
     };
