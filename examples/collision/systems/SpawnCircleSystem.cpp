@@ -18,11 +18,12 @@ namespace Engine::Examples::Collision {
         const int height = window->GetHeight();
 
         for (int i = 0; i < count; ++i) {
-            const Position position{raylib::Vector2(GetRandomValue(0, width), GetRandomValue(0, height))};
             const Speed speed(GetRandomValue(64, 256));
             const MovementInput movementInput{
                     raylib::Vector2(GetRandomValue(-1, 1), GetRandomValue(-1, 1)).Normalize()};
             const Circle circle(GetRandomValue(5, 20), RED);
+            const Position position{raylib::Vector2(GetRandomValue(circle.Radius, width - circle.Radius),
+                                                    GetRandomValue(circle.Radius, height - circle.Radius))};
 
             Circle::CreateAI(registry, circle, position, speed, movementInput);
         }
