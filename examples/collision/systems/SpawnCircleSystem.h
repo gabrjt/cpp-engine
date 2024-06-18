@@ -11,9 +11,10 @@ namespace Engine::Examples::Collision {
         int m_Count;
 
     public:
-        explicit SpawnCircleSystem(int count);
+        SpawnCircleSystem() = delete;
 
-        void Initialize() override;
+        explicit SpawnCircleSystem(int count, std::shared_ptr<raylib::Window> window,
+                                   std::shared_ptr<entt::registry> registry);
 
         void Update() override;
     };

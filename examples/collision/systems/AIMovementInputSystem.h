@@ -14,8 +14,8 @@ namespace Engine::Examples::Collision {
     public:
         AIMovementInputSystem() = delete;
 
-        explicit AIMovementInputSystem(std::shared_ptr<raylib::Window> &&window,
-                                       std::shared_ptr<entt::registry> &&registry);
+        explicit AIMovementInputSystem(const std::shared_ptr<raylib::Window> &&window,
+                                       const std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

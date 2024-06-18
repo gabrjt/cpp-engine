@@ -8,11 +8,10 @@
 #include "DrawCircleSystem.h"
 
 namespace Engine::Examples::Collision {
-    void DrawCircleSystem::Initialize() {}
+    DrawCircleSystem::DrawCircleSystem(const std::shared_ptr<entt::registry> &&registry) : m_Registry(registry) {}
 
     void DrawCircleSystem::Update() {
-        static entt::registry &registry = Engine::Application::Get().GetRegistry();
-        auto view = registry.view<const Circle, const Position>();
+        auto view = m_Registry->view<const Circle, const Position>();
 
         view.each([](const Circle &circle, const Position &position) {
             DrawCircle(position.Value.x, position.Value.y, circle.Radius, circle.Color);

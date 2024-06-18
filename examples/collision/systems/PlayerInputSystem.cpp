@@ -8,11 +8,10 @@
 #include "PlayerInputSystem.h"
 
 namespace Engine::Examples::Collision {
-    void PlayerInputSystem::Initialize() {}
+    PlayerInputSystem::PlayerInputSystem(const std::shared_ptr<entt::registry> &&registry) : m_Registry(registry) {}
 
     void PlayerInputSystem::Update() {
-        static entt::registry &registry = Engine::Application::Get().GetRegistry();
-        auto view = registry.view<const Player, Input>();
+        auto view = m_Registry->view<const Player, Input>();
 
         view.each([](Input &input) {
             float x = 0, y = 0;

@@ -9,14 +9,16 @@
 #include "PlayerMovementInputSystem.h"
 
 namespace Engine::Examples::Collision {
-    void PlayerMovementInputSystem::Initialize() {}
+    PlayerMovementInputSystem::PlayerMovementInputSystem(const std::shared_ptr<entt::registry> &&registry) : m_Registry(
+            registry) {}
 
     void PlayerMovementInputSystem::Update() {
-        static entt::registry &registry = Engine::Application::Get().GetRegistry();
-        auto view = registry.view<const PlayerRef, MovementInput>();
+        auto view = m_Registry->view<const PlayerRef, MovementInput>();
 
-        view.each([](const PlayerRef &playerRef, MovementInput &movementInput) {
-            movementInput.Direction = registry.get<Input>(playerRef.Value).Joystick.Normalize();
+        view.each([&](const PlayerRef &playerRef, MovementInput &movementInput) {
+            movementInput.Direction = m_Registry->get<Input>(playerRef.Value).Joystick.Normalize();
         });
     }
+
+
 }

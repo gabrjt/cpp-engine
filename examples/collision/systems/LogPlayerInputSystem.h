@@ -7,8 +7,13 @@
 
 namespace Engine::Examples::Collision {
     class LogPlayerInputSystem final : public Engine::System {
+    private:
+        std::shared_ptr<entt::registry> m_Registry;
+
     public:
-        void Initialize() override;
+        LogPlayerInputSystem() = delete;
+
+        explicit LogPlayerInputSystem(const std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

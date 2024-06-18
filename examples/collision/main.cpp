@@ -5,13 +5,20 @@ using namespace Engine::Examples::Collision;
 
 int main() {
     Engine::Application &application = Engine::Application::Get();
-    application.RegisterSystems(WindowSystem("Collisions", 1280, 720, BLACK), CreatePlayerSystem(), PlayerInputSystem(),
-                                LogPlayerInputSystem(), PlayerMovementInputSystem(), AIMovementInputSystem(),
-                                SpawnCircleSystem(16), MovementSystem(), OutOfBoundsSystem(), DrawCircleSystem());
 
-    std::shared_ptr<raylib::Window> window = application.GetWindow();
+    application.RegisterSystems(
+            WindowSystem("Collisions", 1280, 720, BLACK),
+            CreatePlayerSystem(application.GetWindow(), application.GetRegistry()),
+            PlayerInputSystem(application.GetRegistry()),
+            LogPlayerInputSystem(application.GetRegistry()),
+            PlayerMovementInputSystem(application.GetRegistry()),
+            AIMovementInputSystem(application.GetWindow(), application.GetRegistry()),
+            SpawnCircleSystem(16, application.GetWindow(), application.GetRegistry()),
+            MovementSystem(application.GetRegistry()),
+            OutOfBoundsSystem(application.GetWindow(), application.GetRegistry()),
+            DrawCircleSystem(application.GetRegistry()));
 
-    while (!window->ShouldClose()) {
+    while (!application.GetWindow()->ShouldClose()) {
         BeginDrawing();
         application.UpdateSystems();
         EndDrawing();

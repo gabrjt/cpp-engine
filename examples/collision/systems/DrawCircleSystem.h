@@ -7,8 +7,13 @@
 
 namespace Engine::Examples::Collision {
     class DrawCircleSystem final : public Engine::System {
+    private:
+        std::shared_ptr<entt::registry> m_Registry;
+
     public:
-        void Initialize() override;
+        DrawCircleSystem() = delete;
+
+        explicit DrawCircleSystem(const std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

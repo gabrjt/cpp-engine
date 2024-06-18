@@ -10,17 +10,18 @@
 #include "AIMovementInputSystem.h"
 
 namespace Engine::Examples::Collision {
-    AIMovementInputSystem::AIMovementInputSystem(std::shared_ptr<raylib::Window> &&window,
-                                                 std::shared_ptr<entt::registry> &&registry) : m_Window(window),
-                                                                                               m_Registry(registry) {}
+    AIMovementInputSystem::AIMovementInputSystem(const std::shared_ptr<raylib::Window> &&window,
+                                                 const std::shared_ptr<entt::registry> &&registry) : m_Window(window),
+                                                                                                     m_Registry(
+                                                                                                             registry) {}
 
     void AIMovementInputSystem::Update() {
         const int width = m_Window->GetWidth();
         const int height = m_Window->GetHeight();
-        const Rectangle rectangleLeft(0, 0, 1, height);
-        const Rectangle rectangleRight(width, 0, 1, height);
-        const Rectangle rectangleTop(0, 0, width, 1);
-        const Rectangle rectangleBottom(0, height, width, 1);
+        const raylib::Rectangle rectangleLeft(0, 0, 1, height);
+        const raylib::Rectangle rectangleRight(width, 0, 1, height);
+        const raylib::Rectangle rectangleTop(0, 0, width, 1);
+        const raylib::Rectangle rectangleBottom(0, height, width, 1);
         auto view = m_Registry->view<const Circle, const Position, MovementInput>(entt::exclude<PlayerRef>);
 
         view.each([&](const Circle &circle, const Position &position, MovementInput &movementInput) {
@@ -33,12 +34,10 @@ namespace Engine::Examples::Collision {
             }
 
             movementInput.Direction =
-                    movementInput.Direction == raylib::Vector2::Zero() ? raylib::Vector2(GetRandomValue(-1, 1),
-                                                                                         GetRandomValue(-1,
-                                                                                                        1)).Normalize()
-                                                                       : (-movementInput.Direction +
-                                                                          movementInput.Direction.Rotate(
-                                                                                  GetRandomValue(-60, 60))).Normalize();
+                    movementInput.Direction == raylib::Vector2::Zero()
+                    ? raylib::Vector2(GetRandomValue(-1, 1), GetRandomValue(-1, 1)).Normalize()
+                    : (-movementInput.Direction +
+                       movementInput.Direction.Rotate(GetRandomValue(-60, 60))).Normalize();
 
         });
     }

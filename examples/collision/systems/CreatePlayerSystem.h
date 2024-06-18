@@ -10,8 +10,8 @@ namespace Engine::Examples::Collision {
     public:
         CreatePlayerSystem() = delete;
 
-        explicit CreatePlayerSystem(std::shared_ptr<raylib::Window> &&window,
-                                    std::shared_ptr<entt::registry> &&registry);
+        explicit CreatePlayerSystem(std::shared_ptr<raylib::Window> window,
+                                    std::shared_ptr<entt::registry> registry);
 
         void Update() override;
     };

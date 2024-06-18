@@ -10,12 +10,11 @@ namespace Engine::Examples::Collision {
     private:
         std::shared_ptr<raylib::Window> m_Window;
         raylib::Color m_ClearBackgroundColor;
+
     public:
         WindowSystem();
 
         WindowSystem(const char *title, int width, int height, raylib::Color clearBackgroundColor);
-
-        void Initialize() override;
 
         void Update() override;
     };

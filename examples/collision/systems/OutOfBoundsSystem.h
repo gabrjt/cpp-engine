@@ -7,8 +7,15 @@
 
 namespace Engine::Examples::Collision {
     class OutOfBoundsSystem final : public Engine::System {
+    private:
+        std::shared_ptr<raylib::Window> m_Window;
+        std::shared_ptr<entt::registry> m_Registry;
+
     public:
-        void Initialize() override;
+        OutOfBoundsSystem() = delete;
+
+        explicit OutOfBoundsSystem(const std::shared_ptr<raylib::Window> &&window,
+                                   const std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

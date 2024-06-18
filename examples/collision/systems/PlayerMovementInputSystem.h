@@ -7,8 +7,13 @@
 
 namespace Engine::Examples::Collision {
     class PlayerMovementInputSystem final : public Engine::System {
+    private:
+        std::shared_ptr<entt::registry> m_Registry;
+
     public:
-        void Initialize() override;
+        PlayerMovementInputSystem() = delete;
+
+        explicit PlayerMovementInputSystem(const std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

@@ -9,11 +9,10 @@
 #include "MovementSystem.h"
 
 namespace Engine::Examples::Collision {
-    void MovementSystem::Initialize() {}
+    MovementSystem::MovementSystem(const std::shared_ptr<entt::registry> &&registry) : m_Registry(registry) {}
 
     void MovementSystem::Update() {
-        static entt::registry &registry = Engine::Application::Get().GetRegistry();
-        auto view = registry.view<const MovementInput, const Speed, Position>();
+        auto view = m_Registry->view<const MovementInput, const Speed, Position>();
         const float deltaTime = GetFrameTime();
 
         view.each([&](const MovementInput &movementInput, const Speed &speed, Position &position) {

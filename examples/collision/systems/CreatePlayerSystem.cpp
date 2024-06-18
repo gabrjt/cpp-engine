@@ -11,8 +11,8 @@
 #include "CreatePlayerSystem.h"
 
 namespace Engine::Examples::Collision {
-    CreatePlayerSystem::CreatePlayerSystem(std::shared_ptr<raylib::Window> &&window,
-                                           std::shared_ptr<entt::registry> &&registry) {
+    CreatePlayerSystem::CreatePlayerSystem(const std::shared_ptr<raylib::Window> window,
+                                           const std::shared_ptr<entt::registry> registry) {
         const int width = window->GetWidth();
         const int height = window->GetHeight();
         const Circle circle(25, BLUE);
