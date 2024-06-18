@@ -8,6 +8,10 @@
 namespace Engine::Examples::Collision {
     struct MovementInput {
         raylib::Vector2 Direction;
+
+        MovementInput();
+
+        explicit MovementInput(raylib::Vector2 direction);
     };
 }
 

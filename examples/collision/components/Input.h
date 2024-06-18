@@ -8,6 +8,10 @@
 namespace Engine::Examples::Collision {
     struct Input {
         raylib::Vector2 Joystick;
+
+        Input();
+
+        explicit Input(raylib::Vector2 joystick);
     };
 }
 

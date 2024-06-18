@@ -15,6 +15,8 @@ namespace Engine::Examples::Collision {
         float Radius;
         raylib::Color Color;
 
+        Circle() = delete;
+
         explicit Circle(float radius, raylib::Color color);
 
         static entt::entity Create(entt::registry &registry, const Circle &circle, const Position &position);

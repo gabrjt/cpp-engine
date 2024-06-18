@@ -8,6 +8,10 @@
 namespace Engine::Examples::Collision {
     struct PlayerRef {
         entt::entity Value;
+
+        PlayerRef() = delete;
+
+        explicit PlayerRef(entt::entity playerEntity);
     };
 }
 

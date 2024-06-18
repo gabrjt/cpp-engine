@@ -10,7 +10,7 @@
 #include "Circle.h"
 
 namespace Engine::Examples::Collision {
-    Circle::Circle(float radius, raylib::Color color) : Radius(radius), Color(color) {}
+    Circle::Circle(const float radius, const raylib::Color color) : Radius(radius), Color(color) {}
 
     entt::entity Circle::Create(entt::registry &registry, const Circle &circle, const Position &position) {
         const entt::entity entity = registry.create();

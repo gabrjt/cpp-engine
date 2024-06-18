@@ -8,6 +8,10 @@
 namespace Engine::Examples::Collision {
     struct Position {
         raylib::Vector2 Value;
+
+        Position();
+
+        explicit Position(raylib::Vector2 value);
     };
 }
 
