@@ -5,7 +5,9 @@
 #include "Position.h"
 
 namespace Engine::Examples::Collision {
-    Position::Position() : Value(raylib::Vector2::Zero()) {}
+    Position::Position()
+            : Value(raylib::Vector2::Zero()) {}
 
-    Position::Position(const raylib::Vector2 value) : Value(value) {}
+    Position::Position(const raylib::Vector2 value)
+            : Value(value) {}
 }

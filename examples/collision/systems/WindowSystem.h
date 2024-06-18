@@ -9,7 +9,7 @@ namespace Engine::Examples::Collision {
     class WindowSystem final : public Engine::System {
     private:
         std::shared_ptr<raylib::Window> m_Window;
-        raylib::Color m_ClearBackgroundColor;
+        raylib::Color                   m_ClearBackgroundColor;
 
     public:
         WindowSystem();

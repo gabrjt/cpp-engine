@@ -12,7 +12,7 @@ namespace Engine::Examples::Collision {
     struct Speed;
 
     struct Circle {
-        float Radius;
+        float         Radius;
         raylib::Color Color;
 
         Circle() = delete;
@@ -21,12 +21,17 @@ namespace Engine::Examples::Collision {
 
         static entt::entity Create(entt::registry &registry, const Circle &circle, const Position &position);
 
-        static entt::entity CreatePlayer(entt::registry &registry, const PlayerRef &playerRef, const Circle &circle,
-                                         const Position &position, const Speed &speed);
+        static entt::entity CreatePlayer(entt::registry &registry,
+                                         const PlayerRef &playerRef,
+                                         const Circle &circle,
+                                         const Position &position,
+                                         const Speed &speed);
 
-        static entt::entity
-        CreateAI(entt::registry &registry, const Circle &circle, const Position &position, const Speed &speed,
-                 const MovementInput &movementInput);
+        static entt::entity CreateAI(entt::registry &registry,
+                                     const Circle &circle,
+                                     const Position &position,
+                                     const Speed &speed,
+                                     const MovementInput &movementInput);
     };
 }
 

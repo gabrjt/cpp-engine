@@ -4,7 +4,9 @@
 #include "Speed.h"
 
 namespace Engine::Examples::Collision {
-    Speed::Speed() : Value(0) {}
+    Speed::Speed()
+            : Value(0) {}
 
-    Speed::Speed(const float value) : Value(value) {}
+    Speed::Speed(const float value)
+            : Value(value) {}
 }

@@ -7,16 +7,20 @@
 #include "WindowSystem.h"
 
 namespace Engine::Examples::Collision {
-    WindowSystem::WindowSystem() : m_Window(Engine::Application::Get().OpenWindow("CPP ENGINE", 1920, 1080)),
-                                   m_ClearBackgroundColor(BLACK) {}
+    WindowSystem::WindowSystem()
+            : m_Window(Engine::Application::Get().OpenWindow("CPP ENGINE", 1920, 1080))
+            , m_ClearBackgroundColor(BLACK) {}
 
-    WindowSystem::WindowSystem(const char *title, const int width, const int height, const raylib::Color clearBackgroundColor) : m_Window(
-            Engine::Application::Get().OpenWindow(title, width, height)), m_ClearBackgroundColor(clearBackgroundColor) {
-    }
+    WindowSystem::WindowSystem(const char *title,
+                               const int width,
+                               const int height,
+                               const raylib::Color clearBackgroundColor)
+            : m_Window(Engine::Application::Get().OpenWindow(title, width, height))
+            , m_ClearBackgroundColor(clearBackgroundColor) {}
 
     void WindowSystem::Update() {
-        static const char *text = "WELCOME TO CPP ENGINE";
-        static const int length = strlen(text);
+        static const char   *text{"WELCOME TO CPP ENGINE"};
+        static const size_t length{strlen(text)};
 
         m_Window->ClearBackground(m_ClearBackgroundColor);
 

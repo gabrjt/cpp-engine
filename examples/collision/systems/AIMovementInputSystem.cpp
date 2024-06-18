@@ -11,27 +11,31 @@
 
 namespace Engine::Examples::Collision {
     AIMovementInputSystem::AIMovementInputSystem(const std::shared_ptr<raylib::Window> &&window,
-                                                 const std::shared_ptr<entt::registry> &&registry) : m_Window(window),
-                                                                                                     m_Registry(
-                                                                                                             registry) {}
+                                                 const std::shared_ptr<entt::registry> &&registry)
+            : m_Window(window)
+            , m_Registry(registry) {}
 
     void AIMovementInputSystem::Update() {
-        const int width = m_Window->GetWidth();
-        const int height = m_Window->GetHeight();
+        const int               width{m_Window->GetWidth()};
+        const int               height{m_Window->GetHeight()};
         const raylib::Rectangle rectangleLeft(0, 0, .05f, height);
         const raylib::Rectangle rectangleRight(width, 0, .05f, height);
         const raylib::Rectangle rectangleTop(0, 0, width, .05f);
         const raylib::Rectangle rectangleBottom(0, height, width, .05f);
-        auto view = m_Registry->view<const Circle, const Position, MovementInput>(entt::exclude<PlayerRef>);
+        auto                    view
+                                        {m_Registry->view<const Circle, const Position, MovementInput>(entt::exclude<PlayerRef>)};
 
         view.each([&](const Circle &circle, const Position &position, MovementInput &movementInput) {
-            const bool collisionLeft = CheckCollisionCircleRec(position.Value, circle.Radius, rectangleLeft);
-            const bool collisionRight = CheckCollisionCircleRec(position.Value, circle.Radius, rectangleRight);
-            const bool collisionTop = CheckCollisionCircleRec(position.Value, circle.Radius, rectangleTop);
-            const bool collisionBottom = CheckCollisionCircleRec(position.Value, circle.Radius, rectangleBottom);
+            const bool collisionLeft{CheckCollisionCircleRec(position.Value, circle.Radius, rectangleLeft)};
+            const bool collisionRight{CheckCollisionCircleRec(position.Value, circle.Radius, rectangleRight)};
+            const bool collisionTop{CheckCollisionCircleRec(position.Value, circle.Radius, rectangleTop)};
+            const bool collisionBottom{CheckCollisionCircleRec(position.Value, circle.Radius, rectangleBottom)};
 
-            DrawLine(position.Value.x, position.Value.y, position.Value.x + movementInput.Direction.x * circle.Radius * 2,
-                     position.Value.y + movementInput.Direction.y * circle.Radius * 2, GREEN);
+            DrawLine(position.Value.x,
+                     position.Value.y,
+                     position.Value.x + movementInput.Direction.x * circle.Radius * 2,
+                     position.Value.y + movementInput.Direction.y * circle.Radius * 2,
+                     GREEN);
 
             if (!collisionLeft &&
                 !collisionRight &&
@@ -42,8 +46,9 @@ namespace Engine::Examples::Collision {
             }
 
             if (movementInput.Direction == raylib::Vector2::Zero()) {
-                movementInput.Direction = raylib::Vector2(GetRandomValue(-1, 1), GetRandomValue(-1, 1)).Normalize();
-            } else {
+                movementInput.Direction = Engine::RandomVector2(-1, 1, -1, 1).Normalize();
+            }
+            else {
                 movementInput.Direction = raylib::Vector2::Zero();
 
                 if (collisionLeft) {

@@ -5,8 +5,9 @@
 #include "Input.h"
 
 namespace Engine::Examples::Collision {
-    Input::Input() : Joystick(raylib::Vector2::Zero()) {}
+    Input::Input()
+            : Joystick(raylib::Vector2::Zero()) {}
 
-    Input::Input(const raylib::Vector2 joystick) : Joystick(joystick) {}
+    Input::Input(const raylib::Vector2 joystick)
+            : Joystick(joystick) {}
 }
-

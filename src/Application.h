@@ -10,9 +10,9 @@ namespace Engine {
 
     class Application final {
     private:
-        int m_FrameRate;
-        std::shared_ptr<raylib::Window> m_Window;
-        std::shared_ptr<entt::registry> m_Registry;
+        int                                  m_FrameRate;
+        std::shared_ptr<raylib::Window>      m_Window;
+        std::shared_ptr<entt::registry>      m_Registry;
         std::vector<std::unique_ptr<System>> m_Systems;
 
     public:

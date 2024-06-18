@@ -9,10 +9,11 @@
 #include "LogPlayerInputSystem.h"
 
 namespace Engine::Examples::Collision {
-    LogPlayerInputSystem::LogPlayerInputSystem(const std::shared_ptr<entt::registry> &&registry) : m_Registry(registry) {}
+    LogPlayerInputSystem::LogPlayerInputSystem(const std::shared_ptr<entt::registry> &&registry)
+            : m_Registry(registry) {}
 
     void LogPlayerInputSystem::Update() {
-        auto view = m_Registry->view<const Player, const Input>();
+        auto view{m_Registry->view<const Player, const Input>()};
 
         view.each([](const Input &input) {
             std::cout << "Player Input: " << input.Joystick.ToString() << std::endl;

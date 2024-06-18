@@ -8,8 +8,11 @@
 #include "Application.h"
 
 namespace Engine {
-    Application::Application() : m_FrameRate(60), m_Window(nullptr), m_Registry(std::make_shared<entt::registry>()),
-                                 m_Systems() {
+    Application::Application()
+            : m_FrameRate(60)
+            , m_Window(nullptr)
+            , m_Registry(std::make_shared<entt::registry>())
+            , m_Systems() {
         SetTargetFPS(m_FrameRate);
         SetRandomSeed(GetTime());
     }
@@ -52,7 +55,7 @@ namespace Engine {
     }
 
     void Application::UpdateSystems() {
-        for (const std::unique_ptr<System> &system: m_Systems) {
+        for (const std::unique_ptr<System> &system : m_Systems) {
             system->Update();
         }
     }

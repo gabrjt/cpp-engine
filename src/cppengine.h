@@ -6,4 +6,8 @@
 #include "Application.h"
 #include "System.h"
 
+namespace Engine {
+    raylib::Vector2 RandomVector2(int minX, int maxX, int minY, int maxY);
+}
+
 #endif //CPP_ENGINE_CPPENGINE_H

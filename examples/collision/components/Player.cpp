@@ -7,7 +7,7 @@
 
 namespace Engine::Examples::Collision {
     entt::entity Engine::Examples::Collision::Player::Create(entt::registry &registry) {
-        const entt::entity entity = registry.create();
+        const entt::entity entity{registry.create()};
         registry.emplace<Player>(entity);
         registry.emplace<Input>(entity);
 

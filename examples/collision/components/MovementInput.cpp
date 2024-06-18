@@ -5,7 +5,9 @@
 #include "MovementInput.h"
 
 namespace Engine::Examples::Collision {
-    MovementInput::MovementInput() : Direction(raylib::Vector2::Zero()) {}
+    MovementInput::MovementInput()
+            : Direction(raylib::Vector2::Zero()) {}
 
-    MovementInput::MovementInput(const raylib::Vector2 direction) : Direction(direction) {}
+    MovementInput::MovementInput(const raylib::Vector2 direction)
+            : Direction(direction) {}
 }
