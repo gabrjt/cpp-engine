@@ -33,7 +33,7 @@ namespace Engine {
         std::shared_ptr<raylib::Window> GetWindow();
 
         template<typename ... TSystems>
-        void RegisterSystems(TSystems &&... systems) {
+        void RegisterSystems(const TSystems &... systems) {
             m_Systems.reserve(m_Systems.size() + sizeof...(systems));
 
             ([&] {
