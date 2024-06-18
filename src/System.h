@@ -10,10 +10,6 @@ namespace Engine {
     public:
         virtual ~System() = default;
 
-        // Use constructor for self-contained data.
-        // Use Initialize for accessing dependencies.
-        virtual void Initialize() = 0;
-
         virtual void Update() = 0;
     };
 }

@@ -11,7 +11,7 @@ namespace Engine::Examples::Collision {
         int m_Count;
 
     public:
-        SpawnCircleSystem(int count);
+        explicit SpawnCircleSystem(int count);
 
         void Initialize() override;
 

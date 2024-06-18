@@ -10,7 +10,7 @@ namespace Engine::Examples::Collision {
     WindowSystem::WindowSystem() : m_Window(Engine::Application::Get().OpenWindow("CPP ENGINE", 1920, 1080)),
                                    m_ClearBackgroundColor(BLACK) {}
 
-    WindowSystem::WindowSystem(const char *title, int width, int height, raylib::Color clearBackgroundColor) : m_Window(
+    WindowSystem::WindowSystem(const char *title, const int width, const int height, raylib::Color clearBackgroundColor) : m_Window(
             Engine::Application::Get().OpenWindow(title, width, height)), m_ClearBackgroundColor(clearBackgroundColor) {
     }
 

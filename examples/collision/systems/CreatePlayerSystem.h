@@ -8,7 +8,10 @@
 namespace Engine::Examples::Collision {
     class CreatePlayerSystem final : public Engine::System {
     public:
-        void Initialize() override;
+        CreatePlayerSystem() = delete;
+
+        explicit CreatePlayerSystem(std::shared_ptr<raylib::Window> &&window,
+                                    std::shared_ptr<entt::registry> &&registry);
 
         void Update() override;
     };

@@ -11,18 +11,16 @@
 #include "CreatePlayerSystem.h"
 
 namespace Engine::Examples::Collision {
-    void CreatePlayerSystem::Initialize() {
-        Engine::Application &application = Engine::Application::Get();
-        std::shared_ptr<raylib::Window> window = application.GetWindow();
-        entt::registry &registry = application.GetRegistry();
+    CreatePlayerSystem::CreatePlayerSystem(std::shared_ptr<raylib::Window> &&window,
+                                           std::shared_ptr<entt::registry> &&registry) {
         const int width = window->GetWidth();
         const int height = window->GetHeight();
         const Circle circle(25, BLUE);
         const Position position{raylib::Vector2(GetRandomValue(circle.Radius, width - circle.Radius),
                                                 GetRandomValue(circle.Radius, height - circle.Radius))};
         const Speed speed{256};
-        const entt::entity playerEntity = Player::Create(registry);
-        const entt::entity circleEntity = Circle::CreatePlayer(registry, {playerEntity}, circle, position, speed);
+        const entt::entity playerEntity = Player::Create(*registry);
+        const entt::entity circleEntity = Circle::CreatePlayer(*registry, {playerEntity}, circle, position, speed);
     }
 
     void CreatePlayerSystem::Update() {}

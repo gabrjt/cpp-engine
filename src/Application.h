@@ -12,7 +12,7 @@ namespace Engine {
     private:
         int m_FrameRate;
         std::shared_ptr<raylib::Window> m_Window;
-        entt::registry m_Registry;
+        std::shared_ptr<entt::registry> m_Registry;
         std::vector<std::unique_ptr<System>> m_Systems;
 
     public:
@@ -46,7 +46,7 @@ namespace Engine {
 
         std::size_t GetSystemsCount() const;
 
-        entt::registry &GetRegistry();
+        std::shared_ptr<entt::registry> GetRegistry();
 
         void UpdateSystems();
 
